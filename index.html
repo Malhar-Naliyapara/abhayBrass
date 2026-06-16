@@ -71,7 +71,7 @@
 
 <!-- HERO -->
 <section class="dw-hero" id="home">
-  <div class="grid-bg" aria-hidden="true"><svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice"><defs><pattern id="gp" width="58" height="58" patternUnits="userSpaceOnUse"><path d="M 58 0 L 0 0 0 58" fill="none" stroke="white" stroke-width="0.4"/></pattern></defs><rect width="100%" height="100%" fill="url(#gp)"/></svg></div>
+  <div class="grid-bg" aria-hidden="true"><svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice"><defs><pattern id="gp" width="58" height="58" patternUnits="userSpaceOnUse"><path d="M 58 0 L 0 0 0 58" fill="none" stroke="#5B95A8" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#gp)"/></svg></div>
   <div class="scan" aria-hidden="true"></div>
   <div class="corner ctlp" aria-hidden="true"></div><div class="corner ctrp" aria-hidden="true"></div>
   <div class="corner cblp" aria-hidden="true"></div><div class="corner cbrp" aria-hidden="true"></div>
@@ -104,57 +104,30 @@
       </div>
     </div>
 
-    <div class="hero-right" aria-hidden="true">
-      <div class="hero-catalog">
-        <div class="hcat-header">
-          <span>Product Range</span>
-          <span>Est. 1995</span>
+    <div class="hero-right">
+      <div class="showcase" id="showcase" aria-label="Featured product showcase">
+        <div class="sc-head">
+          <span class="sc-ref" id="sc-ref">REF · AB—01</span>
+          <span class="sc-tag">Technical Drawing</span>
         </div>
-        <div class="hcat-grid">
-          <div class="hcat-cell" onclick="filt('Bolts',null)">
-            <div class="hcat-n">01</div>
-            <div class="hcat-nm">Tower Bolts</div>
-            <div class="hcat-ct">24 SKUs</div>
-          </div>
-          <div class="hcat-cell" onclick="filt('Hinges',null)">
-            <div class="hcat-n">02</div>
-            <div class="hcat-nm">Hinges</div>
-            <div class="hcat-ct">18 SKUs</div>
-          </div>
-          <div class="hcat-cell" onclick="filt('Knobs',null)">
-            <div class="hcat-n">03</div>
-            <div class="hcat-nm">SS Hinges</div>
-            <div class="hcat-ct">15 SKUs</div>
-          </div>
-          <div class="hcat-cell" onclick="filt('Handles',null)">
-            <div class="hcat-n">04</div>
-            <div class="hcat-nm">Handles</div>
-            <div class="hcat-ct">28 SKUs</div>
-          </div>
-          <div class="hcat-cell" onclick="filt('Locks',null)">
-            <div class="hcat-n">05</div>
-            <div class="hcat-nm">Locks</div>
-            <div class="hcat-ct">15 SKUs</div>
-          </div>
-          <div class="hcat-cell" onclick="filt('Hooks',null)">
-            <div class="hcat-n">06</div>
-            <div class="hcat-nm">Hooks &amp; Rings</div>
-            <div class="hcat-ct">20 SKUs</div>
-          </div>
+        <div class="sc-sheet" id="sc-sheet">
+          <div class="sc-cross" aria-hidden="true"></div>
+          <div class="sc-reg tl" aria-hidden="true"></div><div class="sc-reg tr" aria-hidden="true"></div>
+          <div class="sc-reg bl" aria-hidden="true"></div><div class="sc-reg br" aria-hidden="true"></div>
+          <div class="sc-stage" id="sc-stage"></div>
+          <div class="sc-anno a1" id="sc-a1"><b id="sc-dim">Ø 25 mm</b><span class="ln"></span><span class="nd"></span></div>
+          <div class="sc-anno a2" id="sc-a2"><span class="nd"></span><span class="ln"></span><b id="sc-mat">IS-319 BRASS</b></div>
+          <div class="sc-scan" aria-hidden="true"></div>
         </div>
-        <div class="hcat-footer">
-          <div class="hcat-stat">
-            <span class="hcat-sv">500+</span>
-            <span class="hcat-sl">Products</span>
-          </div>
-          <div class="hcat-stat">
-            <span class="hcat-sv">30+</span>
-            <span class="hcat-sl">Countries</span>
-          </div>
-          <div class="hcat-stat">
-            <span class="hcat-sv">29yr</span>
-            <span class="hcat-sl">Experience</span>
-          </div>
+        <div class="sc-meta">
+          <div class="sc-cat" id="sc-cat">Tower Bolts</div>
+          <div class="sc-name" id="sc-name">25mm Barrel Bolt</div>
+          <div class="sc-fins" id="sc-fins"></div>
+        </div>
+        <div class="sc-rail" id="sc-rail"></div>
+        <div class="sc-foot">
+          <button class="sc-view" id="sc-view"><i class="ti ti-arrow-up-right" aria-hidden="true"></i> View Details</button>
+          <div class="sc-prog"><span id="sc-prog-bar"></span></div>
         </div>
       </div>
     </div>

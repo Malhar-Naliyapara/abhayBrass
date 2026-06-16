@@ -5,7 +5,7 @@ document.querySelectorAll('.h1r[data-delay]').forEach(el => {
 
 /* ── PRODUCTS DATA ── */
 const fc = { Antique:'#8B6914', Chrome:'#B0B0B0', Gold:'#C9A84C', Satin:'#B8A99A', Nickel:'#A0A0A0' };
-const bg = { Bolts:'#1C1A15', Hinges:'#151A1E', Knobs:'#1A1520', Handles:'#151C15', Locks:'#1C1515', Hooks:'#1A1A14' };
+const bg = { Bolts:'#13202C', Hinges:'#122231', Knobs:'#152834', Handles:'#16252A', Locks:'#1A2230', Hooks:'#142430' };
 const ic = { Bolts:'🔩', Hinges:'🔧', Knobs:'⚙️', Handles:'🪝', Locks:'🔒', Hooks:'🔗' };
 const base = 'https://www.dharabrass.com/';
 const bmap = { best:'Bestseller', new:'New', prem:'Premium' };
@@ -411,3 +411,111 @@ countUp('s1', 500, '+', 2600, 1200);
 countUp('s2',  30, '+', 2700,  900);
 countUp('s3',  29,  '', 2800,  900);
 countUp('s4',2000, '+', 2900, 1200);
+
+/* ── HERO PRODUCT SHOWCASE (blueprint drawing sheet) ── */
+(function () {
+  const root = document.getElementById('showcase');
+  if (!root) return;
+
+  const stage   = document.getElementById('sc-stage');
+  const refEl   = document.getElementById('sc-ref');
+  const catEl   = document.getElementById('sc-cat');
+  const nameEl  = document.getElementById('sc-name');
+  const finsEl  = document.getElementById('sc-fins');
+  const dimEl   = document.getElementById('sc-dim');
+  const matEl   = document.getElementById('sc-mat');
+  const sheet   = document.getElementById('sc-sheet');
+  const rail    = document.getElementById('sc-rail');
+  const viewBtn = document.getElementById('sc-view');
+  const progBar = document.getElementById('sc-prog-bar');
+
+  /* Curated featured pieces — each must resolve to a product that has an image.
+     dim/mat are the monospace spec callouts shown on the drawing. */
+  const specs = [
+    { n: '25mm Barrel Bolt',        dim: 'Ø 25 mm',     mat: 'IS-319 BRASS'   },
+    { n: 'Adjustable Hinges',       dim: '100 × 75 mm', mat: 'EXTRUDED BRASS' },
+    { n: 'Security Hinges',         dim: '4" · BB',     mat: 'BRASS + SS PIN' },
+    { n: 'Decorative Hinges',       dim: '89 × 76 mm',  mat: 'CAST BRASS'     },
+    { n: 'SS Butt Hinges',          dim: '4 × 3 mm',    mat: 'SS-304'         },
+    { n: 'SS 4 Ball Bearing Hinges',dim: '125 mm 4BB',  mat: 'SS-304'         },
+  ];
+  const catMap = { Bolts: 'Tower Bolts', Knobs: 'SS Hinges' };
+  const items = specs
+    .map(s => { const p = prods.find(x => x.n === s.n && x.img); return p ? { ...p, dim: s.dim, mat: s.mat } : null; })
+    .filter(Boolean);
+  if (!items.length) return;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ROT = 4200; // ms per slide
+  let idx = 0, paused = false;
+
+  rail.innerHTML = items.map((p, i) =>
+    `<button class="sc-thumb${i === 0 ? ' on' : ''}" data-i="${i}" aria-label="Show ${p.n}">
+       <img src="${p.img}" alt="" loading="lazy">
+     </button>`).join('');
+  const thumbs = [...rail.querySelectorAll('.sc-thumb')];
+
+  function paint(p) {
+    refEl.textContent  = `REF · AB—${String(items.indexOf(p) + 1).padStart(2, '0')}`;
+    catEl.textContent  = catMap[p.c] || p.c;
+    nameEl.textContent = p.n;
+    dimEl.textContent  = p.dim;
+    matEl.textContent  = p.mat;
+    finsEl.innerHTML   = p.f.map(f => `<span class="sc-fin" style="--fc:${fc[f] || '#999'}">${f}</span>`).join('');
+    stage.innerHTML    = p.img
+      ? `<img class="sc-img" src="${p.img}" alt="${p.n}" onerror="this.parentElement.innerHTML='<div class=sc-ph>${ic[p.c] || '⚙️'}</div>'">`
+      : `<div class="sc-ph">${ic[p.c] || '⚙️'}</div>`;
+  }
+
+  function relight() {
+    sheet.classList.remove('lit', 'scanning');
+    void sheet.offsetWidth;                 // force reflow to restart the sweep
+    sheet.classList.add('lit');
+    if (!reduce) sheet.classList.add('scanning');
+  }
+
+  function show(i, instant) {
+    idx = (i + items.length) % items.length;
+    thumbs.forEach((t, k) => t.classList.toggle('on', k === idx));
+    const p = items[idx];
+    if (instant || reduce) { paint(p); relight(); return; }
+    stage.classList.add('swapping');
+    setTimeout(() => { paint(p); stage.classList.remove('swapping'); relight(); }, 280);
+  }
+
+  function startProg() {
+    if (reduce) return;
+    progBar.classList.remove('run');
+    void progBar.offsetWidth;
+    progBar.style.animationPlayState = 'running';
+    progBar.classList.add('run');
+  }
+  function next() { show(idx + 1); startProg(); }
+
+  progBar.style.setProperty('--rot', ROT + 'ms');
+  progBar.addEventListener('animationend', () => { if (!paused) next(); });
+
+  rail.addEventListener('click', e => {
+    const t = e.target.closest('.sc-thumb');
+    if (t) { show(+t.dataset.i); startProg(); }
+  });
+  viewBtn.addEventListener('click', () => openModal(items[idx]));
+  stage.addEventListener('click', () => openModal(items[idx]));
+
+  const pause  = () => { paused = true;  progBar.style.animationPlayState = 'paused'; };
+  const resume = () => { paused = false; if (!reduce) progBar.style.animationPlayState = 'running'; };
+  root.addEventListener('mouseenter', pause);
+  root.addEventListener('mouseleave', resume);
+  root.addEventListener('focusin',  pause);
+  root.addEventListener('focusout', resume);
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => es.forEach(en => {
+      paused = !en.isIntersecting;
+      progBar.style.animationPlayState = (en.isIntersecting && !reduce) ? 'running' : 'paused';
+    }), { threshold: 0.25 }).observe(root);
+  }
+
+  show(0, true);
+  startProg();
+})();
