@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Abhay Brass — Premium Brass &amp; Steel Door Hardware</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Product detail">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="Close"><i class="ti ti-x"></i></button>
+    <div class="modal-img" id="modal-img"></div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <div class="modal-cat" id="modal-cat"></div>
+        <div class="modal-name" id="modal-name"></div>
+        <div class="modal-finishes" id="modal-finishes"></div>
+      </div>
+      <button class="sub-btn modal-enq" id="modal-enq">
+        <i class="ti ti-mail" aria-hidden="true"></i> Send Enquiry for This Product
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="dw">
+
+<!-- NAV -->
+<nav class="dw-nav" id="nav">
+  <div class="nav-left">
+    <div class="logo-abbr">AB</div>
+    <div class="logo-sep"></div>
+    <div class="logo-text">
+      <div class="logo-name">Abhay Brass</div>
+      <div class="logo-tag">Brass Hardware</div>
+    </div>
+  </div>
+  <div class="nav-center">
+    <a class="nl" href="#products">Products</a>
+    <a class="nl" href="#about">About</a>
+    <a class="nl" href="#quality">Quality</a>
+    <a class="nl" href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-cat">Download Catalogue</button>
+    <button class="nav-quote"><span>Get a Quote</span></button>
+  </div>
+  <button class="nav-menu" id="nav-menu" aria-label="Toggle menu" aria-expanded="false">
+    <i class="ti ti-menu-2"></i>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a class="mm-link" href="#products">Products</a>
+  <a class="mm-link" href="#about">About</a>
+  <a class="mm-link" href="#quality">Quality</a>
+  <a class="mm-link" href="#contact">Contact</a>
+  <a class="mm-link" href="#contact">Get a Quote</a>
+</div>
+
+<!-- HERO -->
+<section class="dw-hero" id="home">
+  <div class="grid-bg" aria-hidden="true"><svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice"><defs><pattern id="gp" width="58" height="58" patternUnits="userSpaceOnUse"><path d="M 58 0 L 0 0 0 58" fill="none" stroke="white" stroke-width="0.4"/></pattern></defs><rect width="100%" height="100%" fill="url(#gp)"/></svg></div>
+  <div class="scan" aria-hidden="true"></div>
+  <div class="corner ctlp" aria-hidden="true"></div><div class="corner ctrp" aria-hidden="true"></div>
+  <div class="corner cblp" aria-hidden="true"></div><div class="corner cbrp" aria-hidden="true"></div>
+  <div class="particles" id="pts" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="h-badge"><div class="bdot"></div>ISO 9001:2015 Certified &nbsp;·&nbsp; Jamnagar, India &nbsp;·&nbsp; Est. 1995</div>
+      <div class="h-kicker">Premium Brass Hardware Manufacturer &amp; Global Exporter</div>
+      <h1 class="h1">
+        <span class="h1r" data-delay="1.1s">Where Every Door</span>
+        <span class="h1r" data-delay="1.3s">Meets <em>Timeless</em></span>
+        <span class="h1r" data-delay="1.5s">Craftsmanship</span>
+      </h1>
+      <div class="h-rule"><div class="rl"></div><div class="rd"></div><div class="rl"></div></div>
+      <p class="h-sub">Precision-engineered brass &amp; steel fittings trusted by architects, OEMs and luxury interior brands across 30+ countries. Crafted to last a lifetime.</p>
+      <div class="h-ctas">
+        <button class="cta-p" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+          <i class="ti ti-packages" aria-hidden="true"></i> Explore Products
+        </button>
+        <button class="cta-g">
+          <i class="ti ti-download" aria-hidden="true"></i> Download Catalogue
+        </button>
+      </div>
+      <div class="h-stats">
+        <div class="hst"><div class="hn" id="s1">0+</div><div class="hl">Products</div></div>
+        <div class="hst"><div class="hn" id="s2">0+</div><div class="hl">Countries</div></div>
+        <div class="hst"><div class="hn" id="s3">0</div><div class="hl">Years Exp.</div></div>
+        <div class="hst"><div class="hn" id="s4">0+</div><div class="hl">Clients</div></div>
+      </div>
+    </div>
+
+    <div class="hero-right" aria-hidden="true">
+      <div class="hero-catalog">
+        <div class="hcat-header">
+          <span>Product Range</span>
+          <span>Est. 1995</span>
+        </div>
+        <div class="hcat-grid">
+          <div class="hcat-cell" onclick="filt('Bolts',null)">
+            <div class="hcat-n">01</div>
+            <div class="hcat-nm">Tower Bolts</div>
+            <div class="hcat-ct">24 SKUs</div>
+          </div>
+          <div class="hcat-cell" onclick="filt('Hinges',null)">
+            <div class="hcat-n">02</div>
+            <div class="hcat-nm">Hinges</div>
+            <div class="hcat-ct">18 SKUs</div>
+          </div>
+          <div class="hcat-cell" onclick="filt('Knobs',null)">
+            <div class="hcat-n">03</div>
+            <div class="hcat-nm">SS Hinges</div>
+            <div class="hcat-ct">15 SKUs</div>
+          </div>
+          <div class="hcat-cell" onclick="filt('Handles',null)">
+            <div class="hcat-n">04</div>
+            <div class="hcat-nm">Handles</div>
+            <div class="hcat-ct">28 SKUs</div>
+          </div>
+          <div class="hcat-cell" onclick="filt('Locks',null)">
+            <div class="hcat-n">05</div>
+            <div class="hcat-nm">Locks</div>
+            <div class="hcat-ct">15 SKUs</div>
+          </div>
+          <div class="hcat-cell" onclick="filt('Hooks',null)">
+            <div class="hcat-n">06</div>
+            <div class="hcat-nm">Hooks &amp; Rings</div>
+            <div class="hcat-ct">20 SKUs</div>
+          </div>
+        </div>
+        <div class="hcat-footer">
+          <div class="hcat-stat">
+            <span class="hcat-sv">500+</span>
+            <span class="hcat-sl">Products</span>
+          </div>
+          <div class="hcat-stat">
+            <span class="hcat-sv">30+</span>
+            <span class="hcat-sl">Countries</span>
+          </div>
+          <div class="hcat-stat">
+            <span class="hcat-sv">29yr</span>
+            <span class="hcat-sl">Experience</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-ind">
+    <div class="sl"><div class="sf"></div></div>
+    <div class="st">Scroll to explore</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq" aria-hidden="true">
+  <div class="mq-inner">
+    <span class="mi"><i class="ti ti-bolt"></i>Tower Bolts</span>
+    <span class="mi"><i class="ti ti-rotate-2"></i>Brass Hinges</span>
+    <span class="mi"><i class="ti ti-circle-dot"></i>Door Knobs</span>
+    <span class="mi"><i class="ti ti-grip-horizontal"></i>Cabinet Handles</span>
+    <span class="mi"><i class="ti ti-lock"></i>Mortise Locks</span>
+    <span class="mi"><i class="ti ti-hook"></i>Coat Hooks</span>
+    <span class="mi"><i class="ti ti-settings-2"></i>Custom OEM</span>
+    <span class="mi"><i class="ti ti-world"></i>Global Export</span>
+    <span class="mi"><i class="ti ti-bolt"></i>Tower Bolts</span>
+    <span class="mi"><i class="ti ti-rotate-2"></i>Brass Hinges</span>
+    <span class="mi"><i class="ti ti-circle-dot"></i>Door Knobs</span>
+    <span class="mi"><i class="ti ti-grip-horizontal"></i>Cabinet Handles</span>
+    <span class="mi"><i class="ti ti-lock"></i>Mortise Locks</span>
+    <span class="mi"><i class="ti ti-hook"></i>Coat Hooks</span>
+    <span class="mi"><i class="ti ti-settings-2"></i>Custom OEM</span>
+    <span class="mi"><i class="ti ti-world"></i>Global Export</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="sec sec-mid" id="about">
+  <div class="sec-eyebrow">Browse by category</div>
+  <h2 class="sec-title reveal">Our Collections</h2>
+  <p class="sec-sub reveal">Precision-manufactured across 6 core product lines</p>
+  <div class="cat-grid" id="cat-grid">
+    <div class="cat-card reveal-stagger" onclick="filt('Bolts',null)">
+      <div class="cat-ic"><i class="ti ti-bolt" aria-hidden="true"></i></div>
+      <div class="cat-nm">Tower Bolts</div>
+      <div class="cat-ct">24 products</div>
+      <div class="cat-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="cat-card reveal-stagger" onclick="filt('Hinges',null)">
+      <div class="cat-ic"><i class="ti ti-rotate-2" aria-hidden="true"></i></div>
+      <div class="cat-nm">Hinges</div>
+      <div class="cat-ct">18 products</div>
+      <div class="cat-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="cat-card reveal-stagger" onclick="filt('Knobs',null)">
+      <div class="cat-ic"><i class="ti ti-circle-dot" aria-hidden="true"></i></div>
+      <div class="cat-nm">SS Hinges</div>
+      <div class="cat-ct">15 products</div>
+      <div class="cat-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="cat-card reveal-stagger" onclick="filt('Handles',null)">
+      <div class="cat-ic"><i class="ti ti-grip-horizontal" aria-hidden="true"></i></div>
+      <div class="cat-nm">Handles</div>
+      <div class="cat-ct">28 products</div>
+      <div class="cat-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="cat-card reveal-stagger" onclick="filt('Locks',null)">
+      <div class="cat-ic"><i class="ti ti-lock" aria-hidden="true"></i></div>
+      <div class="cat-nm">Locks</div>
+      <div class="cat-ct">15 products</div>
+      <div class="cat-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+    <div class="cat-card reveal-stagger" onclick="filt('Hooks',null)">
+      <div class="cat-ic"><i class="ti ti-hook" aria-hidden="true"></i></div>
+      <div class="cat-nm">Hooks &amp; Rings</div>
+      <div class="cat-ct">20 products</div>
+      <div class="cat-arr"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="sec sec-dark sec-products" id="products">
+  <div class="prod-header">
+    <div>
+      <div class="sec-eyebrow">Our Range</div>
+      <h2 class="sec-title">Product Catalog</h2>
+    </div>
+    <div class="prod-count" id="pcount">Showing 80 products</div>
+  </div>
+  <div class="fbar">
+    <button class="fb on" onclick="filt('All',this)">All</button>
+    <button class="fb" onclick="filt('Bolts',this)">Bolts</button>
+    <button class="fb" onclick="filt('Hinges',this)">Hinges</button>
+    <button class="fb" onclick="filt('Knobs',this)">SS Hinges</button>
+    <button class="fb" onclick="filt('Handles',this)">Handles</button>
+    <button class="fb" onclick="filt('Locks',this)">Locks</button>
+    <button class="fb" onclick="filt('Hooks',this)">Hooks</button>
+    <div class="fsearch-wrap">
+      <i class="ti ti-search" aria-hidden="true"></i>
+      <input class="fsearch-input" id="search-input" type="search" placeholder="Search products..." aria-label="Search products"/>
+    </div>
+  </div>
+  <div class="pgrid" id="pgrid"></div>
+  <div class="no-results" id="no-results" style="display:none">
+    <i class="ti ti-search-off"></i>
+    <p>No products found. Try a different search.</p>
+  </div>
+  <div class="viewall">
+    <button class="btn-va" id="view-all-btn">View All Products <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</section>
+
+<!-- WHY ABHAY BRASS -->
+<section class="sec sec-mid why-sec" id="quality">
+  <div class="sec-eyebrow">Why Abhay Brass</div>
+  <h2 class="sec-title reveal">Built on Precision. <em>Trusted Worldwide.</em></h2>
+  <div class="why-wrap" id="why-grid">
+    <div class="why-cell reveal-stagger">
+      <div class="why-n">01</div>
+      <div class="why-icon"><i class="ti ti-certificate" aria-hidden="true"></i></div>
+      <div class="why-t">ISO Certified Quality</div>
+      <div class="why-d">Every product passes stringent quality checks. ISO 9001:2015 certified facility with full production traceability.</div>
+    </div>
+    <div class="why-cell reveal-stagger">
+      <div class="why-n">02</div>
+      <div class="why-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
+      <div class="why-t">Global Export Ready</div>
+      <div class="why-d">Exporting to 30+ countries. Fully compliant with RoHS, REACH and international hardware standards.</div>
+    </div>
+    <div class="why-cell reveal-stagger">
+      <div class="why-n">03</div>
+      <div class="why-icon"><i class="ti ti-settings-2" aria-hidden="true"></i></div>
+      <div class="why-t">Custom &amp; OEM Orders</div>
+      <div class="why-d">Send your drawing or sample. We manufacture to exact specification with complete confidentiality assured.</div>
+    </div>
+    <div class="why-cell reveal-stagger">
+      <div class="why-n">04</div>
+      <div class="why-icon"><i class="ti ti-truck-delivery" aria-hidden="true"></i></div>
+      <div class="why-t">On-Time Delivery</div>
+      <div class="why-d">Dedicated logistics team managing sea, air and courier shipments with consistent lead times guaranteed.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-ban-wrap">
+  <div class="cta-ban reveal">
+    <div class="sec-eyebrow sec-eyebrow-center">Get in touch</div>
+    <h2>Looking for a <em>Custom Solution?</em></h2>
+    <p>Share your requirements — our team responds within 24 hours with pricing and samples.</p>
+    <div class="cta-row">
+      <button class="cta-p" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        <i class="ti ti-mail" aria-hidden="true"></i> Send Enquiry
+      </button>
+      <button class="cta-g">
+        <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp Us
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="sec sec-mid" id="contact">
+  <div class="sec-eyebrow">Contact us</div>
+  <h2 class="sec-title reveal">Send an <em>Enquiry</em></h2>
+  <p class="sec-sub reveal">We'll respond within 24 hours with availability and pricing</p>
+  <div class="con-grid">
+    <div class="cform reveal">
+      <div class="cft">Enquiry Form</div>
+      <!-- NOTE: First submission triggers a one-time confirmation email from FormSubmit to info@abhaybrass.com — click Activate to go live -->
+      <form id="enquiry-form" novalidate>
+        <div class="fg-row">
+          <div class="fg">
+            <label class="fl" for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input class="fi" id="f-name" name="name" type="text" placeholder="Your full name" required autocomplete="name"/>
+            <div class="ferr" id="err-name" role="alert"></div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="f-company">Company</label>
+            <input class="fi" id="f-company" name="company" type="text" placeholder="Company name" autocomplete="organization"/>
+          </div>
+        </div>
+        <div class="fg-row">
+          <div class="fg">
+            <label class="fl" for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input class="fi" id="f-email" name="email" type="email" placeholder="you@company.com" required autocomplete="email"/>
+            <div class="ferr" id="err-email" role="alert"></div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="f-phone">Phone</label>
+            <input class="fi" id="f-phone" name="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel"/>
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fl" for="f-product">Product Interest</label>
+          <select class="fi" id="f-product" name="product">
+            <option value="">Select a category</option>
+            <option>Tower Bolts</option>
+            <option>Hinges</option>
+            <option>SS Hinges</option>
+            <option>Handles</option>
+            <option>Locks</option>
+            <option>Hooks &amp; Rings</option>
+            <option>Custom / OEM</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label class="fl" for="f-message">Message <span class="req" aria-hidden="true">*</span></label>
+          <textarea class="fi" id="f-message" name="message" placeholder="Describe requirements, quantity, finish preference, target market..." required></textarea>
+          <div class="ferr" id="err-message" role="alert"></div>
+        </div>
+        <button class="sub-btn" type="submit" id="sub-btn">
+          <span class="sub-text">Send Enquiry</span>
+          <i class="ti ti-send sub-icon" aria-hidden="true"></i>
+          <span class="sub-loading" aria-hidden="true"><i class="ti ti-loader-2 spin"></i></span>
+        </button>
+      </form>
+    </div>
+    <div class="cinfo reveal">
+      <div class="ci">
+        <div class="ci-ic"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+        <div><div class="ci-lb">Factory</div><div class="ci-vl">GIDC, Jamnagar — 361 004, Gujarat, India</div></div>
+      </div>
+      <div class="ci">
+        <div class="ci-ic"><i class="ti ti-phone" aria-hidden="true"></i></div>
+        <div><div class="ci-lb">Phone</div><div class="ci-vl">+91 98765 43210</div></div>
+      </div>
+      <div class="ci">
+        <div class="ci-ic"><i class="ti ti-mail" aria-hidden="true"></i></div>
+        <div><div class="ci-lb">Email</div><div class="ci-vl">info@abhaybrass.com</div></div>
+      </div>
+      <div class="ci">
+        <div class="ci-ic"><i class="ti ti-clock" aria-hidden="true"></i></div>
+        <div><div class="ci-lb">Business Hours</div><div class="ci-vl">Mon – Sat · 9:00 AM – 6:00 PM IST</div></div>
+      </div>
+      <button class="wa-btn"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Chat on WhatsApp</button>
+      <div class="certs">
+        <div class="certs-l">Certifications</div>
+        <div class="cert-tags">
+          <span class="ctag">ISO 9001:2015</span>
+          <span class="ctag">RoHS Compliant</span>
+          <span class="ctag">Make in India</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="ftop">
+    <div>
+      <div class="f-brand">Abhay <em>Brass</em></div>
+      <div class="f-desc">Premium brass &amp; steel hardware manufacturer and global exporter. Crafted with precision in Jamnagar, Gujarat since 1995.</div>
+      <div class="f-social">
+        <a class="fsoc" href="#" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+        <a class="fsoc" href="#" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+        <a class="fsoc" href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+      </div>
+    </div>
+    <div>
+      <div class="fh">Products</div>
+      <a class="fl2" onclick="filt('Bolts',null)">Tower Bolts</a>
+      <a class="fl2" onclick="filt('Hinges',null)">Hinges</a>
+      <a class="fl2" onclick="filt('Handles',null)">Handles</a>
+      <a class="fl2" onclick="filt('Locks',null)">Locks</a>
+      <a class="fl2" onclick="filt('Hooks',null)">Hooks</a>
+    </div>
+    <div>
+      <div class="fh">Company</div>
+      <a class="fl2" href="#about">About Us</a>
+      <a class="fl2" href="#quality">Quality</a>
+      <a class="fl2" href="#quality">Infrastructure</a>
+      <a class="fl2" href="#contact">Export Markets</a>
+    </div>
+    <div>
+      <div class="fh">Contact</div>
+      <a class="fl2" href="#contact">Send Enquiry</a>
+      <a class="fl2">WhatsApp</a>
+      <a class="fl2">Download Catalogue</a>
+      <a class="fl2" href="#contact">Find Us</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <div class="fcopy">© 2025 Abhay Brass. All rights reserved.</div>
+    <div class="fbadges">
+      <span class="fbadge">ISO 9001:2015</span>
+      <span class="fbadge">Made in India</span>
+      <span class="fbadge">Est. 1995</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="main.js"></script>
+</body>
+</html>
