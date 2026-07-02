@@ -3,421 +3,120 @@ document.querySelectorAll(".h1r[data-delay]").forEach((el) => {
   el.style.setProperty("--d", el.dataset.delay);
 });
 
-/* ── PRODUCTS DATA ── */
-const fc = {
-  Antique: "#8B6914",
-  Chrome: "#B0B0B0",
-  Gold: "#C9A84C",
-  Satin: "#B8A99A",
-  Nickel: "#A0A0A0",
+/* ── PRODUCTS DATA ──
+   Each product: { n: name, c: category, m: material, t?: type/group, s: slug }
+   Image is resolved from c + s at render time:
+     upload/<folder>/<slug>.jpg  →  upload/<folder>/_category.jpg  →  icon
+   See upload/README.md for the filename each photo should use. */
+const mc = {
+  Brass: "#C9A84C",
+  Aluminium: "#AEB4BA",
+  Steel: "#8A99A6",
 };
 const bg = {
   Bolts: "#1C1A15",
   Hinges: "#151A1E",
-  Knobs: "#1A1520",
-  Handles: "#151C15",
-  Locks: "#1C1515",
-  Hooks: "#1A1A14",
 };
-const ic = { Bolts: "🔩", Hinges: "🔧", Knobs: "⚙️", Handles: "🪝", Locks: "🔒", Hooks: "🔗" };
-const base = "https://www.dharabrass.com/";
+const ic = { Bolts: "🔩", Hinges: "🪛" };
+const catLabel = { Bolts: "Tower Bolt", Hinges: "Hinge" };
+const catFolder = { Bolts: "tower-bolts", Hinges: "hinges" };
 const bmap = { best: "Bestseller", new: "New", prem: "Premium" };
 
 const prods = [
-  {
-    n: "25mm Barrel Bolt",
-    c: "Bolts",
-    f: ["Antique", "Chrome"],
-    b: "best",
-    img: base + "assets/imgs/products/01/01/01.jpg",
-  },
-  {
-    n: "25mm Necked Barrel Bolt",
-    c: "Bolts",
-    f: ["Antique", "Gold", "Chrome"],
-    img: base + "assets/imgs/products/01/01/02.jpg",
-  },
-  {
-    n: "24mm Barrel Bolt",
-    c: "Bolts",
-    f: ["Chrome", "Satin"],
-    img: base + "assets/imgs/products/01/01/03.jpg",
-  },
-  {
-    n: "24mm Necked Barrel Bolt",
-    c: "Bolts",
-    f: ["Antique", "Nickel"],
-    img: base + "assets/imgs/products/01/01/04.jpg",
-  },
-  {
-    n: "32mm Barrel Bolt",
-    c: "Bolts",
-    f: ["Chrome", "Gold"],
-    b: "new",
-    img: base + "assets/imgs/products/01/01/05.jpg",
-  },
-  {
-    n: "32mm Necked Barrel Bolt",
-    c: "Bolts",
-    f: ["Antique", "Chrome"],
-    img: base + "assets/imgs/products/01/01/06.jpg",
-  },
-  {
-    n: "38mm Barrel Bolt",
-    c: "Bolts",
-    f: ["Gold", "Satin"],
-    img: base + "assets/imgs/products/01/01/07.jpg",
-  },
-  {
-    n: "38mm Necked Barrel Bolt",
-    c: "Bolts",
-    f: ["Chrome", "Nickel"],
-    img: base + "assets/imgs/products/01/01/08.jpg",
-  },
-  {
-    n: "Zen Baby Latch",
-    c: "Bolts",
-    f: ["Antique"],
-    img: base + "assets/imgs/products/01/01/09.jpg",
-  },
-  {
-    n: "Half Round Baby Latch",
-    c: "Bolts",
-    f: ["Chrome", "Satin"],
-    img: base + "assets/imgs/products/01/01/10.jpg",
-  },
-  {
-    n: "Surface Bolt",
-    c: "Bolts",
-    f: ["Antique", "Chrome"],
-    img: base + "assets/imgs/products/01/01/11.jpg",
-  },
-  {
-    n: "Flush Bolt",
-    c: "Bolts",
-    f: ["Chrome", "Gold"],
-    b: "new",
-    img: base + "assets/imgs/products/01/01/12.jpg",
-  },
-  {
-    n: "Rod Leg",
-    c: "Bolts",
-    f: ["Antique", "Nickel"],
-    img: base + "assets/imgs/products/01/01/13.jpg",
-  },
-  {
-    n: "Parliament Tower Bolt",
-    c: "Bolts",
-    f: ["Gold", "Chrome"],
-    img: base + "assets/imgs/products/01/01/14.jpg",
-  },
-  {
-    n: "Reversible Bolt",
-    c: "Bolts",
-    f: ["Chrome", "Satin"],
-    img: base + "assets/imgs/products/01/01/15.jpg",
-  },
-  {
-    n: "Round Concealed Tower Bolt",
-    c: "Bolts",
-    f: ["Antique", "Chrome"],
-    img: base + "assets/imgs/products/01/01/16.jpg",
-  },
-  {
-    n: "Double Ball Catch",
-    c: "Bolts",
-    f: ["Gold", "Nickel"],
-    img: base + "assets/imgs/products/01/01/17.jpg",
-  },
-  {
-    n: "Adjustable Hinges",
-    c: "Hinges",
-    f: ["Antique", "Chrome"],
-    b: "best",
-    img: base + "assets/imgs/products/01/02/01.jpg",
-  },
-  {
-    n: "Ball Bearing Hinges",
-    c: "Hinges",
-    f: ["Gold", "Satin"],
-    img: base + "assets/imgs/products/01/02/02.jpg",
-  },
-  {
-    n: "Broad Butt Hinges",
-    c: "Hinges",
-    f: ["Chrome", "Nickel"],
-    img: base + "assets/imgs/products/01/02/03.jpg",
-  },
-  {
-    n: "Butt Hinges",
-    c: "Hinges",
-    f: ["Antique", "Chrome"],
-    img: base + "assets/imgs/products/01/02/04.jpg",
-  },
-  {
-    n: "Butterfly Hinges",
-    c: "Hinges",
-    f: ["Chrome"],
-    b: "new",
-    img: base + "assets/imgs/products/01/02/05.jpg",
-  },
-  {
-    n: "Counter Flap Hinges",
-    c: "Hinges",
-    f: ["Gold", "Satin"],
-    img: base + "assets/imgs/products/01/02/06.jpg",
-  },
-  {
-    n: "Crown Hinges",
-    c: "Hinges",
-    f: ["Antique", "Nickel"],
-    img: base + "assets/imgs/products/01/02/07.jpg",
-  },
-  {
-    n: "Decorative Hinges",
-    c: "Hinges",
-    f: ["Gold", "Chrome"],
-    b: "prem",
-    img: base + "assets/imgs/products/01/02/08.jpg",
-  },
-  {
-    n: "Double Phosphor Bronze Washer Hinges",
-    c: "Hinges",
-    f: ["Antique", "Chrome"],
-    img: base + "assets/imgs/products/01/02/09.jpg",
-  },
-  {
-    n: "Double Stainless Steel Washer Hinges",
-    c: "Hinges",
-    f: ["Chrome", "Nickel"],
-    img: base + "assets/imgs/products/01/02/10.jpg",
-  },
-  {
-    n: "Double Steel Washer Hinges",
-    c: "Hinges",
-    f: ["Antique", "Satin"],
-    img: base + "assets/imgs/products/01/02/11.jpg",
-  },
-  {
-    n: "Flag Hinges",
-    c: "Hinges",
-    f: ["Gold", "Chrome"],
-    img: base + "assets/imgs/products/01/02/12.jpg",
-  },
-  {
-    n: "Flush Hinges",
-    c: "Hinges",
-    f: ["Chrome", "Nickel"],
-    img: base + "assets/imgs/products/01/02/13.jpg",
-  },
-  {
-    n: "H Hinges",
-    c: "Hinges",
-    f: ["Antique", "Gold"],
-    img: base + "assets/imgs/products/01/02/15.jpg",
-  },
-  {
-    n: "L Hinges",
-    c: "Hinges",
-    f: ["Chrome", "Satin"],
-    img: base + "assets/imgs/products/01/02/16.jpg",
-  },
-  {
-    n: "Loose Pin Hinges",
-    c: "Hinges",
-    f: ["Antique", "Chrome"],
-    img: base + "assets/imgs/products/01/02/17.jpg",
-  },
-  {
-    n: "Parliament Hinges",
-    c: "Hinges",
-    f: ["Gold", "Nickel"],
-    img: base + "assets/imgs/products/01/02/18.jpg",
-  },
-  {
-    n: "Reflex Hinges",
-    c: "Hinges",
-    f: ["Chrome", "Antique"],
-    img: base + "assets/imgs/products/01/02/20.jpg",
-  },
-  {
-    n: "Round Corner Hinges",
-    c: "Hinges",
-    f: ["Gold", "Satin"],
-    img: base + "assets/imgs/products/01/02/21.jpg",
-  },
-  {
-    n: "Security Hinges",
-    c: "Hinges",
-    f: ["Chrome", "Nickel"],
-    b: "best",
-    img: base + "assets/imgs/products/01/02/22.jpg",
-  },
-  {
-    n: "Simplex Hinges",
-    c: "Hinges",
-    f: ["Antique", "Chrome"],
-    img: base + "assets/imgs/products/01/02/23.jpg",
-  },
-  {
-    n: "Small Butt Hinges",
-    c: "Hinges",
-    f: ["Gold", "Satin"],
-    img: base + "assets/imgs/products/01/02/24.jpg",
-  },
-  {
-    n: "Square Barrel Hinges",
-    c: "Hinges",
-    f: ["Chrome", "Nickel"],
-    img: base + "assets/imgs/products/01/02/25.jpg",
-  },
-  {
-    n: "Square Corner Hinges",
-    c: "Hinges",
-    f: ["Antique", "Gold"],
-    img: base + "assets/imgs/products/01/02/26.jpg",
-  },
-  {
-    n: "Tee Hinges",
-    c: "Hinges",
-    f: ["Chrome", "Satin"],
-    img: base + "assets/imgs/products/01/02/27.jpg",
-  },
-  {
-    n: "SS Butt Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Satin"],
-    b: "best",
-    img: base + "assets/imgs/products/02/01/01.jpg",
-  },
-  {
-    n: "SS 2 Ball Bearing Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Nickel"],
-    img: base + "assets/imgs/products/02/01/02.jpg",
-  },
-  {
-    n: "SS 4 Ball Bearing Hinges",
-    c: "Knobs",
-    f: ["Chrome"],
-    img: base + "assets/imgs/products/02/01/03.jpg",
-  },
-  {
-    n: "SS Parliament Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Satin"],
-    img: base + "assets/imgs/products/02/01/04.jpg",
-  },
-  {
-    n: "SS Square Parliament Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Nickel"],
-    img: base + "assets/imgs/products/02/01/05.jpg",
-  },
-  {
-    n: "SS Broad Butt Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Satin"],
-    img: base + "assets/imgs/products/02/01/06.jpg",
-  },
-  {
-    n: "SS Flush Hinges",
-    c: "Knobs",
-    f: ["Chrome"],
-    img: base + "assets/imgs/products/02/01/07.jpg",
-  },
-  {
-    n: "SS Flag Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Nickel"],
-    img: base + "assets/imgs/products/02/01/08.jpg",
-  },
-  {
-    n: "SS Washer Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Satin"],
-    img: base + "assets/imgs/products/02/01/09.jpg",
-  },
-  {
-    n: "SS Loose Pin Hinges",
-    c: "Knobs",
-    f: ["Chrome"],
-    img: base + "assets/imgs/products/02/01/10.jpg",
-  },
-  {
-    n: "SS Rising Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Nickel"],
-    b: "new",
-    img: base + "assets/imgs/products/02/01/11.jpg",
-  },
-  {
-    n: "SS Lift Off Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Satin"],
-    img: base + "assets/imgs/products/02/01/12.jpg",
-  },
-  {
-    n: "SS Round Corner Hinges",
-    c: "Knobs",
-    f: ["Chrome"],
-    img: base + "assets/imgs/products/02/01/13.jpg",
-  },
-  {
-    n: "SS Square Corner Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Nickel"],
-    img: base + "assets/imgs/products/02/01/14.jpg",
-  },
-  {
-    n: "SS H Hinges",
-    c: "Knobs",
-    f: ["Chrome", "Satin"],
-    img: base + "assets/imgs/products/02/01/15.jpg",
-  },
-  { n: "D-Shape Handle", c: "Handles", f: ["Antique", "Chrome"], b: "best" },
-  { n: "Bar Handle 128mm", c: "Handles", f: ["Gold", "Satin"] },
-  { n: "Bar Handle 192mm", c: "Handles", f: ["Chrome", "Nickel"] },
-  { n: "Pull Handle 300mm", c: "Handles", f: ["Antique", "Chrome"], b: "new" },
-  { n: "Wardrobe Handle", c: "Handles", f: ["Gold", "Chrome"] },
-  { n: "Drawer Handle", c: "Handles", f: ["Antique", "Satin"] },
-  { n: "Cabinet Handle", c: "Handles", f: ["Chrome", "Nickel"] },
-  { n: "Flush Handle", c: "Handles", f: ["Antique"] },
-  { n: "Mortise Handle", c: "Handles", f: ["Gold", "Chrome"] },
-  { n: "Mortise Lock", c: "Locks", f: ["Chrome", "Antique"], b: "best" },
-  { n: "Cylindrical Lock", c: "Locks", f: ["Gold", "Satin"] },
-  { n: "Rim Lock", c: "Locks", f: ["Chrome", "Nickel"] },
-  { n: "Pad Lock", c: "Locks", f: ["Antique", "Chrome"] },
-  { n: "Hasp & Staple", c: "Locks", f: ["Antique"] },
-  { n: "Sliding Door Lock", c: "Locks", f: ["Chrome", "Gold"], b: "new" },
-  { n: "Drawer Lock", c: "Locks", f: ["Antique", "Satin"] },
-  { n: "Coat Hook Double", c: "Hooks", f: ["Antique", "Chrome"], b: "best" },
-  { n: "Coat Hook Single", c: "Hooks", f: ["Gold", "Satin"] },
-  { n: "Bathroom Hook", c: "Hooks", f: ["Chrome", "Nickel"] },
-  { n: "Robe Hook Oval", c: "Hooks", f: ["Antique", "Chrome"] },
-  { n: "Cup Hook", c: "Hooks", f: ["Gold", "Antique"] },
-  { n: "S-Hook Large", c: "Hooks", f: ["Chrome", "Satin"] },
-  { n: "Ring Hook", c: "Hooks", f: ["Antique"] },
-  { n: "Picture Hook", c: "Hooks", f: ["Gold", "Chrome"], b: "new" },
-  { n: "Curtain Ring", c: "Hooks", f: ["Antique", "Nickel"] },
-  { n: "Rail Hook", c: "Hooks", f: ["Chrome", "Gold"] },
+  /* ── TOWER BOLTS · Brass · One Piece ── */
+  { n: '3/8" Round Tower Bolt (Light)', c: "Bolts", m: "Brass", t: "One Piece", s: "brass-round-tb-3-8-light" },
+  { n: '3/8" Round Tower Bolt (Heavy)', c: "Bolts", m: "Brass", t: "One Piece", s: "brass-round-tb-3-8-heavy" },
+  { n: '½" Round Tower Bolt', c: "Bolts", m: "Brass", t: "One Piece", s: "brass-round-tb-half" },
+  { n: '½" Hex Tower Bolt', c: "Bolts", m: "Brass", t: "One Piece", s: "brass-hex-tb-half" },
+  { n: '½" V-Hex Tower Bolt', c: "Bolts", m: "Brass", t: "One Piece", s: "brass-vhex-tb-half" },
+
+  /* ── TOWER BOLTS · Brass · Two Piece ── */
+  { n: "Matka Tower Bolt (SRD)", c: "Bolts", m: "Brass", t: "Two Piece", s: "brass-matka-tb-srd" },
+  { n: "Full Brass Matka Tower Bolt", c: "Bolts", m: "Brass", t: "Two Piece", s: "brass-full-matka-tb" },
+  { n: "Marble Tower Bolt (Regular)", c: "Bolts", m: "Brass", t: "Two Piece", s: "brass-marble-tb-regular" },
+  { n: "Marble Tower Bolt (Heavy)", c: "Bolts", m: "Brass", t: "Two Piece", s: "brass-marble-tb-heavy" },
+  { n: "10mm Xylo Tower Bolt", c: "Bolts", m: "Brass", t: "Two Piece", s: "brass-xylo-tb-10mm" },
+  { n: "12mm Xylo Tower Bolt", c: "Bolts", m: "Brass", t: "Two Piece", s: "brass-xylo-tb-12mm" },
+  { n: "10mm Hex Tower Bolt", c: "Bolts", m: "Brass", t: "Two Piece", s: "brass-hex-tb-10mm" },
+  { n: "10mm V-Hex Tower Bolt", c: "Bolts", m: "Brass", t: "Two Piece", s: "brass-vhex-tb-10mm" },
+  { n: "12mm Hex Tower Bolt", c: "Bolts", m: "Brass", t: "Two Piece", s: "brass-hex-tb-12mm" },
+  { n: "12mm V-Hex Tower Bolt", c: "Bolts", m: "Brass", t: "Two Piece", s: "brass-vhex-tb-12mm" },
+
+  /* ── TOWER BOLTS · Aluminium ── */
+  { n: "16mm Round Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-round-tb-16mm" },
+  { n: "12mm Round Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-round-tb-12mm" },
+  { n: "12mm V-Hex Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-vhex-tb-12mm" },
+  { n: "12mm Apple Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-apple-tb-12mm" },
+  { n: "12mm Double Line Veli Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-double-line-veli-tb-12mm" },
+  { n: "10mm Round Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-round-tb-10mm" },
+  { n: "Xylo Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-xylo-tb" },
+  { n: "Pyramid Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-pyramid-tb" },
+  { n: "Super Marble / Duck Marble", c: "Bolts", m: "Aluminium", s: "alu-super-marble-duck-marble" },
+  { n: "Pollo Marble", c: "Bolts", m: "Aluminium", s: "alu-pollo-marble" },
+  { n: "Royal Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-royal-tb" },
+  { n: "Flower Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-flower-tb" },
+  { n: "Sylo Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-sylo-tb" },
+  { n: "Half Round Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-half-round-tb" },
+  { n: "Owel Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-owel-tb" },
+  { n: "Square Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-square-tb" },
+  { n: "Jumbo Baby Latch", c: "Bolts", m: "Aluminium", t: "Baby Latch", s: "alu-jumbo-baby-latch" },
+  { n: "12mm Round Baby Latch", c: "Bolts", m: "Aluminium", t: "Baby Latch", s: "alu-round-baby-latch-12mm" },
+  { n: "12mm Square Baby Latch", c: "Bolts", m: "Aluminium", t: "Baby Latch", s: "alu-square-baby-latch-12mm" },
+  { n: "Xylo Baby Latch", c: "Bolts", m: "Aluminium", t: "Baby Latch", s: "alu-xylo-baby-latch" },
+  { n: "12mm Round Tower Bolt (One Pcs)", c: "Bolts", m: "Aluminium", t: "One Piece", s: "alu-round-tb-12mm-one-pcs" },
+  { n: "12mm Veli Tower Bolt (One Pcs)", c: "Bolts", m: "Aluminium", t: "One Piece", s: "alu-veli-tb-12mm-one-pcs" },
+  { n: "12mm V-Hex Tower Bolt (One Pcs)", c: "Bolts", m: "Aluminium", t: "One Piece", s: "alu-vhex-tb-12mm-one-pcs" },
+
+  /* ── HINGES · Steel ── */
+  { n: "L Hinges", c: "Hinges", m: "Steel", s: "steel-l-hinges" },
+  { n: "Butt Hinges", c: "Hinges", m: "Steel", s: "steel-butt-hinges" },
+  { n: "Butterfly Hinges", c: "Hinges", m: "Steel", s: "steel-butterfly-hinges" },
+  { n: "Parliament Hinges", c: "Hinges", m: "Steel", s: "steel-parliament-hinges" },
+
+  /* ── HINGES · Brass ── */
+  { n: "Railway Hinges", c: "Hinges", m: "Brass", s: "brass-railway-hinges" },
+  { n: "Butt Hinges", c: "Hinges", m: "Brass", s: "brass-butt-hinges" },
+  { n: "L Hinges", c: "Hinges", m: "Brass", s: "brass-l-hinges" },
+  { n: "W Hinges", c: "Hinges", m: "Brass", s: "brass-w-hinges" },
+  { n: "Parliament Hinges", c: "Hinges", m: "Brass", s: "brass-parliament-hinges" },
+  { n: "Duck Hinges", c: "Hinges", m: "Brass", s: "brass-duck-hinges" },
 ];
 
-/* ── PRODUCT RENDER ── */
+/* ── PRODUCT RENDER ──
+   The catalog (grid, filters, search, modal) lives only on products.html.
+   Every block below is guarded so this same script can load on every page. */
 let currentProds = [];
 let currentCat = "All";
+let currentMat = null;
 let currentQuery = "";
 let showAll = false;
+const hasGrid = () => !!document.getElementById("pgrid");
 
-function render(cat, query) {
-  let list = cat === "All" ? [...prods] : prods.filter((p) => p.c === cat);
-  if (query) {
-    const q = query.toLowerCase();
+/* Resolve product image, falling back to a per-category photo, then an icon. */
+function imgFallback(el) {
+  if (!el.dataset.tried && el.dataset.fb) {
+    el.dataset.tried = "1";
+    el.src = el.dataset.fb;
+  } else {
+    const ph = document.createElement("div");
+    ph.className = el.dataset.ph || "pc-icon-ph";
+    ph.textContent = el.dataset.ic || "⚙️";
+    el.replaceWith(ph);
+  }
+}
+
+function render() {
+  let list = prods.filter(
+    (p) => (currentCat === "All" || p.c === currentCat) && (!currentMat || p.m === currentMat),
+  );
+  if (currentQuery) {
+    const q = currentQuery.toLowerCase();
     list = list.filter(
       (p) =>
         p.n.toLowerCase().includes(q) ||
-        p.c.toLowerCase().includes(q) ||
-        p.f.some((f) => f.toLowerCase().includes(q)),
+        catLabel[p.c].toLowerCase().includes(q) ||
+        p.m.toLowerCase().includes(q) ||
+        (p.t && p.t.toLowerCase().includes(q)),
     );
   }
   currentProds = list;
@@ -440,13 +139,14 @@ function render(cat, query) {
 
   document.getElementById("pgrid").innerHTML = display
     .map((p, i) => {
-      const dots = p.f
-        .map((f) => `<div class="dot" style="background:${fc[f] || "#555"}" title="${f}"></div>`)
-        .join("");
+      const folder = catFolder[p.c];
+      const pimg = `upload/${folder}/${p.s}.jpg`;
+      const cimg = `upload/${folder}/_category.jpg`;
+      const icon = ic[p.c] || "⚙️";
       const badge = p.b ? `<div class="pc-badge ${p.b}">${bmap[p.b]}</div>` : "";
-      const imgContent = p.img
-        ? `<img src="${p.img}" alt="${p.n}" loading="lazy" class="pc-img-el" onerror="this.style.display='none'">`
-        : `<div class="pc-icon-ph">${ic[p.c] || "⚙️"}</div>`;
+      const imgContent = `<img src="${pimg}" data-fb="${cimg}" data-ic="${icon}" alt="${p.n}" loading="lazy" class="pc-img-el" onerror="imgFallback(this)">`;
+      const mat = `<span class="pc-mat" style="--mc:${mc[p.m] || "#888"}">${p.m}</span>`;
+      const sub = catLabel[p.c] + (p.t ? ` · ${p.t}` : "");
       return `<div class="pc" data-idx="${i}" tabindex="0" role="button" aria-label="View details for ${p.n}">
       <div class="pc-img-wrap" data-cat="${p.c}">
         ${imgContent}
@@ -455,9 +155,9 @@ function render(cat, query) {
       </div>
       <div class="pc-body">
         <div class="pc-name">${p.n}</div>
-        <div class="pc-cat">${p.c}</div>
+        <div class="pc-cat">${sub}</div>
         <div class="pc-foot">
-          <div class="dots">${dots}</div>
+          <div class="pc-mat-wrap">${mat}</div>
           <div class="enq">Enquire <i class="ti ti-arrow-right" style="font-size:10px" aria-hidden="true"></i></div>
         </div>
       </div>
@@ -475,89 +175,111 @@ function render(cat, query) {
   });
 }
 
-function filt(cat, btn) {
-  currentCat = cat;
-  showAll = false;
-  render(cat, currentQuery);
-  if (btn) {
-    document.querySelectorAll(".fb").forEach((b) => b.classList.remove("on"));
-    btn.classList.add("on");
+/* Apply a category/material filter. Called from category cards, hero tiles,
+   footer links and filter chips across the whole site.
+   When there is no grid on the current page (home, about, …) it forwards to
+   products.html with the selection encoded in the URL. */
+function filt(cat, mat, btn) {
+  if (!hasGrid()) {
+    const params = new URLSearchParams();
+    if (cat && cat !== "All") params.set("cat", cat);
+    if (mat) params.set("mat", mat);
+    const q = params.toString();
+    window.location.href = "products.html" + (q ? `?${q}` : "");
+    return;
   }
-  if (cat !== "All") {
+  currentCat = cat;
+  currentMat = mat || null;
+  showAll = false;
+  render();
+  syncChips(cat, mat, btn);
+  if (cat !== "All" || mat) {
     setTimeout(() => {
       document.getElementById("products").scrollIntoView({ behavior: "smooth" });
     }, 60);
   }
 }
 
-render("All", "");
-
-/* ── VIEW ALL TOGGLE ── */
-document.getElementById("view-all-btn").addEventListener("click", () => {
-  showAll = true;
-  render(currentCat, currentQuery);
-});
-
-/* ── PRODUCT GRID CLICK ── */
-document.getElementById("pgrid").addEventListener("click", (e) => {
-  const card = e.target.closest(".pc");
-  if (card) openModal(currentProds[parseInt(card.dataset.idx)]);
-});
-document.getElementById("pgrid").addEventListener("keydown", (e) => {
-  if (e.key === "Enter" || e.key === " ") {
-    const card = e.target.closest(".pc");
-    if (card) {
-      e.preventDefault();
-      openModal(currentProds[parseInt(card.dataset.idx)]);
-    }
+/* Highlight the active filter chip. */
+function syncChips(cat, mat, btn) {
+  document.querySelectorAll(".fb").forEach((b) => b.classList.remove("on"));
+  if (btn) {
+    btn.classList.add("on");
+    return;
   }
-});
+  document.querySelectorAll(".fb").forEach((b) => {
+    if (b.dataset.cat === cat && (b.dataset.mat || "") === (mat || "")) b.classList.add("on");
+  });
+  if (!document.querySelector(".fb.on")) {
+    const allBtn = document.querySelector('.fb[data-cat="All"]');
+    if (allBtn) allBtn.classList.add("on");
+  }
+}
 
-/* ── SEARCH ── */
-document.getElementById("search-input").addEventListener("input", (e) => {
-  currentQuery = e.target.value.trim();
-  showAll = false;
-  render(currentCat, currentQuery);
-});
+/* ── CATALOG PAGE INIT (products.html only) ── */
+if (hasGrid()) {
+  // Seed filter from ?cat=&mat= so category links deep-link into the catalog.
+  const params = new URLSearchParams(window.location.search);
+  const urlCat = params.get("cat");
+  const urlMat = params.get("mat");
+  if (urlCat || urlMat) {
+    currentCat = urlCat || "All";
+    currentMat = urlMat || null;
+  }
+  render();
+  syncChips(currentCat, currentMat, null);
+
+  document.getElementById("view-all-btn").addEventListener("click", () => {
+    showAll = true;
+    render();
+  });
+
+  const grid = document.getElementById("pgrid");
+  grid.addEventListener("click", (e) => {
+    const card = e.target.closest(".pc");
+    if (card) openModal(currentProds[parseInt(card.dataset.idx)]);
+  });
+  grid.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      const card = e.target.closest(".pc");
+      if (card) {
+        e.preventDefault();
+        openModal(currentProds[parseInt(card.dataset.idx)]);
+      }
+    }
+  });
+
+  document.getElementById("search-input").addEventListener("input", (e) => {
+    currentQuery = e.target.value.trim();
+    showAll = false;
+    render();
+  });
+}
 
 /* ── MODAL ── */
 function openModal(p) {
   if (!p) return;
   const modal = document.getElementById("modal");
-  document.getElementById("modal-cat").textContent = p.c;
+  document.getElementById("modal-cat").textContent = `${p.m} ${catLabel[p.c]}`;
   document.getElementById("modal-name").textContent = p.n;
 
   const finEl = document.getElementById("modal-finishes");
-  finEl.innerHTML = p.f
-    .map((f) => `<span class="mfin" style="--fc:${fc[f] || "#aaa"}">${f}</span>`)
-    .join("");
+  const matChip = `<span class="mfin" style="--fc:${mc[p.m] || "#aaa"}">${p.m}</span>`;
+  const typeChip = p.t ? `<span class="mfin mfin-plain">${p.t}</span>` : "";
+  finEl.innerHTML = matChip + typeChip;
 
+  const folder = catFolder[p.c];
   const imgEl = document.getElementById("modal-img");
-  if (p.img) {
-    imgEl.innerHTML = `<img src="${p.img}" alt="${p.n}" onerror="this.parentElement.innerHTML='<div class=modal-icon-ph>${ic[p.c] || "⚙️"}</div>'">`;
-  } else {
-    imgEl.innerHTML = `<div class="modal-icon-ph">${ic[p.c] || "⚙️"}</div>`;
-  }
+  imgEl.innerHTML = `<img src="upload/${folder}/${p.s}.jpg" data-fb="upload/${folder}/_category.jpg" data-ic="${ic[p.c] || "⚙️"}" data-ph="modal-icon-ph" alt="${p.n}" onerror="imgFallback(this)">`;
 
   document.getElementById("modal-enq").onclick = () => {
-    closeModal();
-    const sel = document.getElementById("f-product");
-    const map = {
-      Bolts: "Tower Bolts",
-      Hinges: "Hinges",
-      Knobs: "SS Hinges",
-      Handles: "Handles",
-      Locks: "Locks",
-      Hooks: "Hooks & Rings",
-    };
-    if (sel) sel.value = map[p.c] || "";
-    const msg = document.getElementById("f-message");
-    if (msg) {
-      msg.value = `I am interested in: ${p.n}\n\nFinishes available: ${p.f.join(", ")}\n\nPlease share pricing and minimum order quantity.`;
-    }
-    setTimeout(() => {
-      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
-    }, 200);
+    const map = { Bolts: "Tower Bolts", Hinges: "Hinges" };
+    const item = `${p.n} (${p.m}${p.t ? ", " + p.t : ""})`;
+    // The enquiry form lives on contact.html — carry the selection over in the URL.
+    const params = new URLSearchParams();
+    params.set("product", map[p.c] || "");
+    params.set("item", item);
+    window.location.href = "contact.html?" + params.toString();
   };
 
   modal.classList.add("open");
@@ -565,19 +287,23 @@ function openModal(p) {
 }
 
 function closeModal() {
-  document.getElementById("modal").classList.remove("open");
+  const modal = document.getElementById("modal");
+  if (!modal) return;
+  modal.classList.remove("open");
   document.body.style.overflow = "";
 }
 
-document.getElementById("modal-close").addEventListener("click", closeModal);
-document.getElementById("modal").addEventListener("click", (e) => {
-  if (e.target === document.getElementById("modal")) closeModal();
-});
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModal();
-});
+if (document.getElementById("modal")) {
+  document.getElementById("modal-close").addEventListener("click", closeModal);
+  document.getElementById("modal").addEventListener("click", (e) => {
+    if (e.target === document.getElementById("modal")) closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+}
 
-/* ── CONTACT FORM ── */
+/* ── CONTACT FORM (contact.html only) ── */
 const form = document.getElementById("enquiry-form");
 const subBtn = document.getElementById("sub-btn");
 
@@ -602,7 +328,24 @@ function fieldError(id, msg) {
   if (el) el.textContent = msg;
 }
 
-form.addEventListener("submit", async (e) => {
+if (form) {
+  // Prefill from a product enquiry link: contact.html?product=…&item=…
+  const params = new URLSearchParams(window.location.search);
+  const product = params.get("product");
+  const item = params.get("item");
+  if (product) {
+    const sel = document.getElementById("f-product");
+    if (sel) sel.value = product;
+  }
+  if (item) {
+    const msg = document.getElementById("f-message");
+    if (msg) {
+      msg.value = `I am interested in: ${item}\n\nPlease share pricing and minimum order quantity.`;
+    }
+  }
+}
+
+form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   // Clear errors
@@ -693,41 +436,49 @@ const staggerObs = new IntersectionObserver(
   },
   { threshold: 0.1 },
 );
-["cat-grid", "why-grid"].forEach((id) => {
-  const el = document.getElementById(id);
-  if (el) staggerObs.observe(el);
+// Observe every container that holds staggered items, on any page.
+const staggerContainers = new Set();
+document.querySelectorAll(".reveal-stagger").forEach((el) => {
+  if (el.parentElement) staggerContainers.add(el.parentElement);
 });
+staggerContainers.forEach((el) => staggerObs.observe(el));
 
 /* ── STICKY NAV ── */
 const nav = document.getElementById("nav");
-window.addEventListener(
-  "scroll",
-  () => {
-    nav.classList.toggle("scrolled", window.scrollY > 50);
-  },
-  { passive: true },
-);
+if (nav) {
+  window.addEventListener(
+    "scroll",
+    () => {
+      nav.classList.toggle("scrolled", window.scrollY > 50);
+    },
+    { passive: true },
+  );
+}
 
 /* ── MOBILE MENU ── */
 const navMenuBtn = document.getElementById("nav-menu");
 const mobileMenu = document.getElementById("mobile-menu");
-navMenuBtn.addEventListener("click", () => {
-  const isOpen = mobileMenu.classList.toggle("open");
-  navMenuBtn.setAttribute("aria-expanded", isOpen);
-  navMenuBtn.querySelector("i").className = isOpen ? "ti ti-x" : "ti ti-menu-2";
-});
-document.querySelectorAll(".mm-link").forEach((link) => {
-  link.addEventListener("click", () => {
-    mobileMenu.classList.remove("open");
-    navMenuBtn.setAttribute("aria-expanded", "false");
-    navMenuBtn.querySelector("i").className = "ti ti-menu-2";
+if (navMenuBtn && mobileMenu) {
+  navMenuBtn.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.toggle("open");
+    navMenuBtn.setAttribute("aria-expanded", isOpen);
+    navMenuBtn.querySelector("i").className = isOpen ? "ti ti-x" : "ti ti-menu-2";
   });
-});
+  document.querySelectorAll(".mm-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      navMenuBtn.setAttribute("aria-expanded", "false");
+      navMenuBtn.querySelector("i").className = "ti ti-menu-2";
+    });
+  });
+}
 
 /* ── SMOOTH SCROLL for nav links ── */
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (e) => {
-    const target = document.querySelector(link.getAttribute("href"));
+    const href = link.getAttribute("href");
+    if (href === "#" || href.length < 2) return; // bare "#" placeholder links
+    const target = document.querySelector(href);
     if (target) {
       e.preventDefault();
       target.scrollIntoView({ behavior: "smooth" });
@@ -735,13 +486,15 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
-/* ── HERO PARTICLES ── */
+/* ── HERO PARTICLES (home only) ── */
 const pts = document.getElementById("pts");
-for (let i = 0; i < 20; i++) {
-  const p = document.createElement("div");
-  p.className = "pt";
-  p.style.cssText = `left:${Math.random() * 100}%;bottom:${Math.random() * 60}%;--d:${4 + Math.random() * 6}s;--dl:${Math.random() * 6}s`;
-  pts.appendChild(p);
+if (pts) {
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement("div");
+    p.className = "pt";
+    p.style.cssText = `left:${Math.random() * 100}%;bottom:${Math.random() * 60}%;--d:${4 + Math.random() * 6}s;--dl:${Math.random() * 6}s`;
+    pts.appendChild(p);
+  }
 }
 
 /* ── HERO COUNTER ── */

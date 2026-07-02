@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Abhay Brass | Send an Enquiry</title>
+  <meta name="description"
+    content="Contact Abhay Brass — send an enquiry for brass, aluminium & steel door hardware. Factory in GIDC, Jamnagar, Gujarat, India. We respond within 24 hours." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div class="dw">
+
+    <!-- NAV -->
+    <nav class="dw-nav" id="nav">
+      <a class="nav-left" href="index.html">
+        <div class="logo-abbr">AB</div>
+        <div class="logo-sep"></div>
+        <div class="logo-text">
+          <div class="logo-name">Abhay Brass</div>
+          <div class="logo-tag">Brass Hardware</div>
+        </div>
+      </a>
+      <div class="nav-center">
+        <a class="nl" href="index.html">Home</a>
+        <a class="nl" href="about.html">About</a>
+        <a class="nl" href="products.html">Products</a>
+        <a class="nl" href="quality.html">Quality</a>
+        <a class="nl active" href="contact.html">Contact</a>
+      </div>
+      <div class="nav-right">
+        <a class="nav-cat" href="contact.html">Download Catalogue</a>
+        <a class="nav-quote" href="contact.html"><span>Get a Quote</span></a>
+      </div>
+      <button class="nav-menu" id="nav-menu" aria-label="Toggle menu" aria-expanded="false">
+        <i class="ti ti-menu-2"></i>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a class="mm-link" href="index.html">Home</a>
+      <a class="mm-link" href="about.html">About</a>
+      <a class="mm-link" href="products.html">Products</a>
+      <a class="mm-link" href="quality.html">Quality</a>
+      <a class="mm-link" href="contact.html">Contact</a>
+      <a class="mm-link" href="contact.html">Get a Quote</a>
+    </div>
+
+    <!-- PAGE HERO -->
+    <header class="page-hero">
+      <div class="grid-bg" aria-hidden="true"><svg viewBox="0 0 1400 400" preserveAspectRatio="xMidYMid slice">
+          <rect width="100%" height="100%" fill="url(#gp)" />
+          <defs>
+            <pattern id="gp" width="58" height="58" patternUnits="userSpaceOnUse">
+              <path d="M 58 0 L 0 0 0 58" fill="none" stroke="white" stroke-width="0.4" />
+            </pattern>
+          </defs>
+        </svg></div>
+      <div class="page-hero-inner">
+        <div class="ph-breadcrumb"><a href="index.html">Home</a> <span>/</span> Contact</div>
+        <h1 class="ph-title">Send an <em>Enquiry</em></h1>
+        <p class="ph-sub">Tell us what you need — quantity, finish and target market — and we'll respond within 24 hours
+          with availability and pricing.</p>
+      </div>
+    </header>
+
+    <!-- CONTACT -->
+    <section class="sec sec-dark" id="contact">
+      <div class="con-grid">
+        <div class="cform reveal">
+          <div class="cft">Enquiry Form</div>
+          <!-- NOTE: First submission triggers a one-time confirmation email from FormSubmit to info@abhaybrass.com — click Activate to go live -->
+          <form id="enquiry-form" novalidate>
+            <div class="fg-row">
+              <div class="fg">
+                <label class="fl" for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+                <input class="fi" id="f-name" name="name" type="text" placeholder="Your full name" required
+                  autocomplete="name" />
+                <div class="ferr" id="err-name" role="alert"></div>
+              </div>
+              <div class="fg">
+                <label class="fl" for="f-company">Company</label>
+                <input class="fi" id="f-company" name="company" type="text" placeholder="Company name"
+                  autocomplete="organization" />
+              </div>
+            </div>
+            <div class="fg-row">
+              <div class="fg">
+                <label class="fl" for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+                <input class="fi" id="f-email" name="email" type="email" placeholder="you@company.com" required
+                  autocomplete="email" />
+                <div class="ferr" id="err-email" role="alert"></div>
+              </div>
+              <div class="fg">
+                <label class="fl" for="f-phone">Phone</label>
+                <input class="fi" id="f-phone" name="phone" type="tel" placeholder="+91 98765 43210"
+                  autocomplete="tel" />
+              </div>
+            </div>
+            <div class="fg">
+              <label class="fl" for="f-product">Product Interest</label>
+              <select class="fi" id="f-product" name="product">
+                <option value="">Select a category</option>
+                <option>Tower Bolts</option>
+                <option>Hinges</option>
+                <option>Custom / OEM</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label class="fl" for="f-message">Message <span class="req" aria-hidden="true">*</span></label>
+              <textarea class="fi" id="f-message" name="message"
+                placeholder="Describe requirements, quantity, finish preference, target market..." required></textarea>
+              <div class="ferr" id="err-message" role="alert"></div>
+            </div>
+            <button class="sub-btn" type="submit" id="sub-btn">
+              <span class="sub-text">Send Enquiry</span>
+              <i class="ti ti-send sub-icon" aria-hidden="true"></i>
+              <span class="sub-loading" aria-hidden="true"><i class="ti ti-loader-2 spin"></i></span>
+            </button>
+          </form>
+        </div>
+        <div class="cinfo reveal">
+          <div class="ci">
+            <div class="ci-ic"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+            <div>
+              <div class="ci-lb">Factory</div>
+              <div class="ci-vl">GIDC, Jamnagar — 361 004, Gujarat, India</div>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-ic"><i class="ti ti-phone" aria-hidden="true"></i></div>
+            <div>
+              <div class="ci-lb">Phone</div>
+              <div class="ci-vl">+91 98765 43210</div>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-ic"><i class="ti ti-mail" aria-hidden="true"></i></div>
+            <div>
+              <div class="ci-lb">Email</div>
+              <div class="ci-vl">info@abhaybrass.com</div>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-ic"><i class="ti ti-clock" aria-hidden="true"></i></div>
+            <div>
+              <div class="ci-lb">Business Hours</div>
+              <div class="ci-vl">Mon – Sat · 9:00 AM – 6:00 PM IST</div>
+            </div>
+          </div>
+          <a class="wa-btn" href="https://wa.me/919876543210" target="_blank" rel="noopener"><i
+              class="ti ti-brand-whatsapp" aria-hidden="true"></i> Chat on WhatsApp</a>
+          <div class="certs">
+            <div class="certs-l">Certifications</div>
+            <div class="cert-tags">
+              <span class="ctag">ISO 9001:2015</span>
+              <span class="ctag">RoHS Compliant</span>
+              <span class="ctag">Make in India</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAP -->
+      <!-- TODO: replace the embed query with the client's exact factory location / Google Maps place -->
+      <div class="map-wrap reveal">
+        <iframe title="Abhay Brass location — Jamnagar, Gujarat"
+          src="https://www.google.com/maps?q=GIDC%20Jamnagar%20Gujarat%20India&output=embed" width="100%" height="360"
+          style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="ftop">
+        <div>
+          <div class="f-brand">Abhay <em>Brass</em></div>
+          <div class="f-desc">Premium brass &amp; steel hardware manufacturer and global exporter. Crafted with
+            precision in Jamnagar, Gujarat since 1995.</div>
+          <div class="f-social">
+            <a class="fsoc" href="#" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+            <a class="fsoc" href="https://wa.me/919876543210" target="_blank" rel="noopener"
+              aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+            <a class="fsoc" href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="fh">Products</div>
+          <a class="fl2" onclick="filt('Bolts','Brass')">Brass Tower Bolts</a>
+          <a class="fl2" onclick="filt('Bolts','Aluminium')">Aluminium Tower Bolts</a>
+          <a class="fl2" onclick="filt('Hinges','Steel')">Steel Hinges</a>
+          <a class="fl2" onclick="filt('Hinges','Brass')">Brass Hinges</a>
+        </div>
+        <div>
+          <div class="fh">Company</div>
+          <a class="fl2" href="about.html">About Us</a>
+          <a class="fl2" href="quality.html">Quality</a>
+          <a class="fl2" href="quality.html">Infrastructure</a>
+          <a class="fl2" href="quality.html">Export Markets</a>
+        </div>
+        <div>
+          <div class="fh">Contact</div>
+          <a class="fl2" href="contact.html">Send Enquiry</a>
+          <a class="fl2" href="https://wa.me/919876543210" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="fl2" href="contact.html">Download Catalogue</a>
+          <a class="fl2" href="contact.html">Find Us</a>
+        </div>
+      </div>
+      <div class="fbot">
+        <div class="fcopy">© 2025 Abhay Brass. All rights reserved.</div>
+        <div class="fbadges">
+          <span class="fbadge">ISO 9001:2015</span>
+          <span class="fbadge">Made in India</span>
+          <span class="fbadge">Est. 1995</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>

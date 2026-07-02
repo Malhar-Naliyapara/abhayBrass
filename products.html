@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Products — Abhay Brass | Tower Bolts, Hinges &amp; Latches</title>
+  <meta name="description"
+    content="Browse the full Abhay Brass catalog — brass & aluminium tower bolts, baby latches, and steel & brass hinges. Filter by category and material." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Product detail">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close" aria-label="Close"><i class="ti ti-x"></i></button>
+      <div class="modal-img" id="modal-img"></div>
+      <div class="modal-body">
+        <div class="modal-meta">
+          <div class="modal-cat" id="modal-cat"></div>
+          <div class="modal-name" id="modal-name"></div>
+          <div class="modal-finishes" id="modal-finishes"></div>
+        </div>
+        <button class="sub-btn modal-enq" id="modal-enq">
+          <i class="ti ti-mail" aria-hidden="true"></i> Send Enquiry for This Product
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dw">
+
+    <!-- NAV -->
+    <nav class="dw-nav" id="nav">
+      <a class="nav-left" href="index.html">
+        <div class="logo-abbr">AB</div>
+        <div class="logo-sep"></div>
+        <div class="logo-text">
+          <div class="logo-name">Abhay Brass</div>
+          <div class="logo-tag">Brass Hardware</div>
+        </div>
+      </a>
+      <div class="nav-center">
+        <a class="nl" href="index.html">Home</a>
+        <a class="nl" href="about.html">About</a>
+        <a class="nl active" href="products.html">Products</a>
+        <a class="nl" href="quality.html">Quality</a>
+        <a class="nl" href="contact.html">Contact</a>
+      </div>
+      <div class="nav-right">
+        <a class="nav-cat" href="contact.html">Download Catalogue</a>
+        <a class="nav-quote" href="contact.html"><span>Get a Quote</span></a>
+      </div>
+      <button class="nav-menu" id="nav-menu" aria-label="Toggle menu" aria-expanded="false">
+        <i class="ti ti-menu-2"></i>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a class="mm-link" href="index.html">Home</a>
+      <a class="mm-link" href="about.html">About</a>
+      <a class="mm-link" href="products.html">Products</a>
+      <a class="mm-link" href="quality.html">Quality</a>
+      <a class="mm-link" href="contact.html">Contact</a>
+      <a class="mm-link" href="contact.html">Get a Quote</a>
+    </div>
+
+    <!-- PAGE HERO -->
+    <header class="page-hero">
+      <div class="grid-bg" aria-hidden="true"><svg viewBox="0 0 1400 400" preserveAspectRatio="xMidYMid slice">
+          <rect width="100%" height="100%" fill="url(#gp)" />
+          <defs>
+            <pattern id="gp" width="58" height="58" patternUnits="userSpaceOnUse">
+              <path d="M 58 0 L 0 0 0 58" fill="none" stroke="white" stroke-width="0.4" />
+            </pattern>
+          </defs>
+        </svg></div>
+      <div class="page-hero-inner">
+        <div class="ph-breadcrumb"><a href="index.html">Home</a> <span>/</span> Products</div>
+        <h1 class="ph-title">Product <em>Catalog</em></h1>
+        <p class="ph-sub">Precision-manufactured brass &amp; aluminium tower bolts, baby latches, and steel &amp; brass
+          hinges — engineered to last and ready for export.</p>
+      </div>
+    </header>
+
+    <!-- PRODUCTS -->
+    <section class="sec sec-dark sec-products" id="products">
+      <div class="prod-header">
+        <div>
+          <div class="sec-eyebrow">Our Range</div>
+          <h2 class="sec-title">Browse Products</h2>
+        </div>
+        <div class="prod-count" id="pcount">Showing products</div>
+      </div>
+      <div class="fbar">
+        <button class="fb on" data-cat="All" onclick="filt('All',null,this)">All</button>
+        <button class="fb" data-cat="Bolts" onclick="filt('Bolts',null,this)">Tower Bolts</button>
+        <button class="fb" data-cat="Bolts" data-mat="Brass" onclick="filt('Bolts','Brass',this)">Brass Bolts</button>
+        <button class="fb" data-cat="Bolts" data-mat="Aluminium" onclick="filt('Bolts','Aluminium',this)">Aluminium
+          Bolts</button>
+        <button class="fb" data-cat="Hinges" onclick="filt('Hinges',null,this)">Hinges</button>
+        <button class="fb" data-cat="Hinges" data-mat="Steel" onclick="filt('Hinges','Steel',this)">Steel
+          Hinges</button>
+        <button class="fb" data-cat="Hinges" data-mat="Brass" onclick="filt('Hinges','Brass',this)">Brass
+          Hinges</button>
+        <div class="fsearch-wrap">
+          <i class="ti ti-search" aria-hidden="true"></i>
+          <input class="fsearch-input" id="search-input" type="search" placeholder="Search products..."
+            aria-label="Search products" />
+        </div>
+      </div>
+      <div class="pgrid" id="pgrid"></div>
+      <div class="no-results" id="no-results" style="display:none">
+        <i class="ti ti-search-off"></i>
+        <p>No products found. Try a different search.</p>
+      </div>
+      <div class="viewall">
+        <button class="btn-va" id="view-all-btn">View All Products <i class="ti ti-arrow-right"
+            aria-hidden="true"></i></button>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <div class="cta-ban-wrap">
+      <div class="cta-ban reveal">
+        <div class="sec-eyebrow sec-eyebrow-center">Can't find it?</div>
+        <h2>Need a <em>Custom or OEM</em> Product?</h2>
+        <p>Send us your drawing or sample — we manufacture to exact specification with complete confidentiality.</p>
+        <div class="cta-row">
+          <a class="cta-p" href="contact.html">
+            <i class="ti ti-mail" aria-hidden="true"></i> Send Enquiry
+          </a>
+          <a class="cta-g" href="https://wa.me/919876543210" target="_blank" rel="noopener">
+            <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="ftop">
+        <div>
+          <div class="f-brand">Abhay <em>Brass</em></div>
+          <div class="f-desc">Premium brass &amp; steel hardware manufacturer and global exporter. Crafted with
+            precision in Jamnagar, Gujarat since 1995.</div>
+          <div class="f-social">
+            <a class="fsoc" href="#" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+            <a class="fsoc" href="https://wa.me/919876543210" target="_blank" rel="noopener"
+              aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+            <a class="fsoc" href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="fh">Products</div>
+          <a class="fl2" onclick="filt('Bolts','Brass')">Brass Tower Bolts</a>
+          <a class="fl2" onclick="filt('Bolts','Aluminium')">Aluminium Tower Bolts</a>
+          <a class="fl2" onclick="filt('Hinges','Steel')">Steel Hinges</a>
+          <a class="fl2" onclick="filt('Hinges','Brass')">Brass Hinges</a>
+        </div>
+        <div>
+          <div class="fh">Company</div>
+          <a class="fl2" href="about.html">About Us</a>
+          <a class="fl2" href="quality.html">Quality</a>
+          <a class="fl2" href="quality.html">Infrastructure</a>
+          <a class="fl2" href="quality.html">Export Markets</a>
+        </div>
+        <div>
+          <div class="fh">Contact</div>
+          <a class="fl2" href="contact.html">Send Enquiry</a>
+          <a class="fl2" href="https://wa.me/919876543210" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="fl2" href="contact.html">Download Catalogue</a>
+          <a class="fl2" href="contact.html">Find Us</a>
+        </div>
+      </div>
+      <div class="fbot">
+        <div class="fcopy">© 2025 Abhay Brass. All rights reserved.</div>
+        <div class="fbadges">
+          <span class="fbadge">ISO 9001:2015</span>
+          <span class="fbadge">Made in India</span>
+          <span class="fbadge">Est. 1995</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
