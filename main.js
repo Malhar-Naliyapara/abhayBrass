@@ -1,3 +1,7 @@
+/* ── MOTION PREFERENCE ── */
+const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
 /* ── HERO ANIMATIONS ── */
 document.querySelectorAll(".h1r[data-delay]").forEach((el) => {
   el.style.setProperty("--d", el.dataset.delay);
@@ -56,6 +60,7 @@ const prods = [
   { n: "Royal Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-royal-tb" },
   { n: "Flower Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-flower-tb" },
   { n: "Sylo Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-sylo-tb" },
+  { n: "12mm Knob Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-knob-tb-12mm" },
   { n: "Half Round Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-half-round-tb" },
   { n: "Owel Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-owel-tb" },
   { n: "Square Tower Bolt", c: "Bolts", m: "Aluminium", s: "alu-square-tb" },
@@ -80,6 +85,7 @@ const prods = [
   { n: "W Hinges", c: "Hinges", m: "Brass", s: "brass-w-hinges" },
   { n: "Parliament Hinges", c: "Hinges", m: "Brass", s: "brass-parliament-hinges" },
   { n: "Duck Hinges", c: "Hinges", m: "Brass", s: "brass-duck-hinges" },
+  { n: "Bearing Hinges", c: "Hinges", m: "Brass", s: "brass-bearing-hinges" },
 ];
 
 /* ── PRODUCT RENDER ──
@@ -237,14 +243,14 @@ if (hasGrid()) {
   const grid = document.getElementById("pgrid");
   grid.addEventListener("click", (e) => {
     const card = e.target.closest(".pc");
-    if (card) openModal(currentProds[parseInt(card.dataset.idx)]);
+    if (card) openModal(currentProds[parseInt(card.dataset.idx)], card.querySelector(".pc-img-wrap"));
   });
   grid.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       const card = e.target.closest(".pc");
       if (card) {
         e.preventDefault();
-        openModal(currentProds[parseInt(card.dataset.idx)]);
+        openModal(currentProds[parseInt(card.dataset.idx)], card.querySelector(".pc-img-wrap"));
       }
     }
   });
@@ -257,7 +263,7 @@ if (hasGrid()) {
 }
 
 /* ── MODAL ── */
-function openModal(p) {
+function openModal(p, originEl) {
   if (!p) return;
   const modal = document.getElementById("modal");
   document.getElementById("modal-cat").textContent = `${p.m} ${catLabel[p.c]}`;
@@ -284,6 +290,28 @@ function openModal(p) {
 
   modal.classList.add("open");
   document.body.style.overflow = "hidden";
+
+  // Shared-element expand: grow the dialog out of the card that was clicked
+  // (FLIP — animate transform only, so it stays on the compositor).
+  if (originEl && !prefersReduced) {
+    const box = modal.querySelector(".modal-box");
+    const first = originEl.getBoundingClientRect();
+    box.style.transition = "none";
+    box.style.transform = "";
+    const last = box.getBoundingClientRect();
+    const dx = first.left + first.width / 2 - (last.left + last.width / 2);
+    const dy = first.top + first.height / 2 - (last.top + last.height / 2);
+    const sx = Math.max(first.width / last.width, 0.2);
+    const sy = Math.max(first.height / last.height, 0.2);
+    box.style.transformOrigin = "center center";
+    box.style.transform = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
+    box.style.opacity = "0.5";
+    requestAnimationFrame(() => {
+      box.style.transition = "transform 0.42s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease";
+      box.style.transform = "";
+      box.style.opacity = "";
+    });
+  }
 }
 
 function closeModal() {
@@ -428,7 +456,7 @@ const staggerObs = new IntersectionObserver(
     entries.forEach((e) => {
       if (e.isIntersecting) {
         e.target.querySelectorAll(".reveal-stagger").forEach((c, i) => {
-          setTimeout(() => c.classList.add("visible"), i * 90);
+          setTimeout(() => c.classList.add("visible"), i * 45);
         });
         staggerObs.unobserve(e.target);
       }
@@ -442,6 +470,25 @@ document.querySelectorAll(".reveal-stagger").forEach((el) => {
   if (el.parentElement) staggerContainers.add(el.parentElement);
 });
 staggerContainers.forEach((el) => staggerObs.observe(el));
+
+/* ── CLIP-PATH HEADING REVEAL ──
+   Section/page titles wipe up instead of the generic fade, for a more editorial
+   feel. No HTML changes needed — we opt every title in from JS. */
+const clipObs = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("in");
+        clipObs.unobserve(e.target);
+      }
+    });
+  },
+  { threshold: 0.2 },
+);
+document.querySelectorAll(".sec-title, .ph-title").forEach((el) => {
+  el.classList.add("clip-reveal");
+  clipObs.observe(el);
+});
 
 /* ── STICKY NAV ── */
 const nav = document.getElementById("nav");
@@ -495,6 +542,38 @@ if (pts) {
     p.style.cssText = `left:${Math.random() * 100}%;bottom:${Math.random() * 60}%;--d:${4 + Math.random() * 6}s;--dl:${Math.random() * 6}s`;
     pts.appendChild(p);
   }
+}
+
+/* ── SCROLL PROGRESS BAR (all pages) ──
+   Brass hairline that fills as you scroll. scaleX only → compositor-friendly. */
+const progressBar = document.createElement("div");
+progressBar.className = "scroll-progress";
+progressBar.setAttribute("aria-hidden", "true");
+document.body.appendChild(progressBar);
+const updateProgress = () => {
+  const doc = document.documentElement;
+  const max = doc.scrollHeight - doc.clientHeight;
+  progressBar.style.transform = `scaleX(${max > 0 ? doc.scrollTop / max : 0})`;
+};
+window.addEventListener("scroll", updateProgress, { passive: true });
+window.addEventListener("resize", updateProgress, { passive: true });
+updateProgress();
+
+/* ── MAGNETIC CTAs ──
+   High-value buttons drift a few px toward the cursor and spring back on leave.
+   Pointer-only + reduced-motion gated; keyboard/touch users get the static button. */
+if (canHover && !prefersReduced) {
+  document.querySelectorAll(".cta-p, .nav-quote").forEach((btn) => {
+    btn.addEventListener("pointermove", (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width / 2;
+      const y = e.clientY - r.top - r.height / 2;
+      btn.style.transform = `translate(${x * 0.18}px, ${y * 0.28}px)`;
+    });
+    btn.addEventListener("pointerleave", () => {
+      btn.style.transform = "";
+    });
+  });
 }
 
 /* ── HERO COUNTER ── */

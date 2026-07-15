@@ -58,6 +58,7 @@ Category fallback: **`_category.jpg`**
 | Royal Tower Bolt | `alu-royal-tb.jpg` |
 | Flower Tower Bolt | `alu-flower-tb.jpg` |
 | Sylo Tower Bolt | `alu-sylo-tb.jpg` |
+| 12mm Knob Tower Bolt | `alu-knob-tb-12mm.jpg` |
 | Half Round Tower Bolt | `alu-half-round-tb.jpg` |
 | Owel Tower Bolt | `alu-owel-tb.jpg` |
 | Square Tower Bolt | `alu-square-tb.jpg` |
@@ -92,6 +93,7 @@ Category fallback: **`_category.jpg`**
 | W Hinges | `brass-w-hinges.jpg` |
 | Parliament Hinges | `brass-parliament-hinges.jpg` |
 | Duck Hinges | `brass-duck-hinges.jpg` |
+| Bearing Hinges | `brass-bearing-hinges.jpg` |
 
 ---
 
